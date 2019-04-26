@@ -183,10 +183,10 @@ public function index(Request $request)
                 $pago = 'Efectivo';
             }
             if ($request->debito != 0){
-                $pago = 'Tarjeta de Debito';
+                $pago = $pago .  ', Tarjeta de Debito';
             }
             if ($request->pago_tarjeta != 0){
-                $pago = 'Tarjeta de Credito';
+                $pago = $pago .  ', Tarjeta de Credito';
             }
 
             $arqueo = Arqueo::where('estado', 'Abierto')->first();
@@ -247,10 +247,10 @@ public function index(Request $request)
                 $pago = 'Efectivo';
             }
             if ($request->debito != 0){
-                $pago = 'Tarjeta de Debito';
+                $pago = $pago .  ', Tarjeta de Debito';
             }
             if ($request->pago_tarjeta != 0){
-                $pago = 'Tarjeta de Credito';
+                $pago = $pago . ', Tarjeta de Credito';
             }
 
             $arqueo = Arqueo::where('estado', 'Abierto')->first();

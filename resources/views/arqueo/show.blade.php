@@ -15,18 +15,19 @@
                 <div class="container-fluit">
                     @include('flash::message')
                 </div>
-                <div class="row">
+                 <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <h3>Detalle del Arqueo: {{date("d-m-Y", strtotime($arqueo->fecha_hora))}}</h3>
+                        <h3>Detalle del Arqueo: {{date("d-m-Y", strtotime($arqueo->fecha_hora))}}  <a  href="#" data-toggle="modal" data-target="#agregar" class="btn btn-success"><i class="fa fa-edit"></i> Agrega Arqueo</a></h3>
                         <hr>
                     </div>
                 </div>
+                @include('arqueo.modal-agregar')
                 <div class="row">
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>$ {{$arqueo->total_dia}}</h3>
+                                <h3>$ {{$arqueo->total_dia - $ingreso->sum('total') +$efectivo->sum('total') }}</h3>
 
                                 <p>Total Capital</p>
                             </div>
@@ -39,7 +40,7 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>$ {{$inicio->total + $efectivo->sum('total')}}</h3>
+                                <h3>$ {{$inicio->total + $efectivo->sum('total')-$ingreso->sum('total')}}</h3>
                                
 
                                 <p>Total en Caja</p>
@@ -68,7 +69,7 @@
                             <div class="inner">
                               <h3>$ {{$ingreso->sum('total')}}</h3>
 
-                                <p>Total de Ingreso</p>
+                                <p>Total de Salidas $</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-chatbox"></i>

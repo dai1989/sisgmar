@@ -1,119 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte de artículos</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 0.875rem;
-            font-weight: normal;
-            line-height: 1.5;
-            color: #151b1e;           
-        }
-        .table {
-            display: table;
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 1rem;
-            background-color: transparent;
-            border-collapse: collapse;
-        }
-        .table-bordered {
-            border: 1px solid #c2cfd6;
-        }
-        thead {
-            display: table-header-group;
-            vertical-align: middle;
-            border-color: inherit;
-        }
-        tr {
-            display: table-row;
-            vertical-align: inherit;
-            border-color: inherit;
-        }
-        .table th, .table td {
-            padding: 0.75rem;
-            vertical-align: top;
-            border-top: 1px solid #c2cfd6;
-        }
-        .table thead th {
-            vertical-align: bottom;
-            border-bottom: 2px solid #c2cfd6;
-        }
-        .table-bordered thead th, .table-bordered thead td {
-            border-bottom-width: 2px;
-        }
-        .table-bordered th, .table-bordered td {
-            border: 1px solid #c2cfd6;
-        }
-        th, td {
-            display: table-cell;
-            vertical-align: inherit;
-        }
-        th {
-            font-weight: bold;
-            text-align: -internal-center;
-            text-align: left;
-        }
-        tbody {
-            display: table-row-group;
-            vertical-align: middle;
-            border-color: inherit;
-        }
-        tr {
-            display: table-row;
-            vertical-align: inherit;
-            border-color: inherit;
-        }
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        .izquierda{
-            float:left;
-        }
-        .derecha{
-            float:right;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h3>Lista de Artículos <span class="derecha">{{now()}}</span></h3>
-    </div>
-    <div>
-        <table class="table table-bordered table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    
-                    <th>Categoría</th>
-                    <th>Precio Venta</th>
-                    <th>Stock</th>
-                    <th>Descripción</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($productos as $prod)
-                <tr>
-                    <td>{{$prod->barcode}}</td>
-                    
-                    <td>{{$prod->categoria}}</td>
-                    <td>{{$prod->precio_venta}}</td>
-                    <td>{{$prod->stock}}</td>
-                    <td>{{$prod->descripcion}}</td>
-                    <td>{{$prod->condicion?'Activo':'Desactivado'}}</td>
-                </tr>
-                @endforeach                               
-            </tbody>
-        </table>
-    </div>
-    <div class="izquierda">
-        <p><strong>Total de registros: </strong>{{$cont}}</p>
-    </div>    
-</body>
-</html>
+  <meta charset="utf-8">
+  <title>Productos</title>
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  
+  html, body { display: block; }
+
+  table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;    margin: 45px;     width: 480px; text-align: left;    border-collapse: collapse; margin-right:auto;
+  margin-left:auto; }
+  th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+  td {
+    padding: 6px;
+    }
+  .izquierda {
+                  border-top: dotted ;border-width: 2px;
+                  border-left: dotted ;border-width: 2px;
+                  border-bottom: dotted ;border-width: 2px;
+                  position: relative;
+                }
+  .derecha{
+                  border-top: dotted ;border-width: 2px;
+                  border-right: dotted ;border-width: 2px;
+                  border-bottom: dotted ;border-width: 2px;
+
+                }
+  .tije {
+                  width: 20px;
+                  margin-top: -13px;
+                  margin-left: -15px;
+
+          }
+</style>
+
+    </head>
+    <body>
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Codigo</th>
+        </tr>
+        @foreach ($productos as $producto)
+            <tr>
+                <td class="izquierda"><img class="tije" src="{{URL::to('/')}}/imagenes/letra/tijera.png"> {{ $producto->descripcion}}/{{$producto->categoria_descripcion}}</td>
+                <td class="derecha">
+                  @php
+                   echo DNS1D::getBarcodeHTML($producto->barcode,"C128");
+                  @endphp
+                  {{ $producto->barcode}}
+                </td>
+              </tr>
+          @endforeach
+      </table>
+    </body>

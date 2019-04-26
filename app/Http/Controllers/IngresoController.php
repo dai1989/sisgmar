@@ -142,34 +142,9 @@ class IngresoController extends Controller
         $detalle->save();
         $cont=$cont+1;
       }
-       $ing=DB::table('ingreso as i')
-            ->join('detalle_ingreso as di','i.idingreso','=','di.idingreso')
-            ->select(DB::raw('sum(di.cantidad*precio_compra) as total'))
-            ->where('i.idingreso', $ingreso->idingreso)
-            ->first();
+      
 
-        $arqueo = Arqueo::where('estado', 'Abierto')->first();
-
-        $ar = Arqueo::find($arqueo->idarqueo);
-        $ar->total_dia = $arqueo->total_dia;
-        $ar->save();
-        $cont = 0;
-
-        while($cont < count($idproducto)){
-
-            $ar = Producto::find($idproducto[$cont]);
-
-            $arde = New ArqueoDetalle();
-            $arde->idarqueo = $arqueo->idarqueo;
-            $arde->monto= $precio_compra[$cont];
-            $arde->cantidad= $cantidad[$cont];
-            $arde->tipo_venta= 'Ingreso';
-            $arde->tipo_pago= 'Ingreso';
-            $arde->descripcion= 'Se Compro: ' . $ar->descripcion;
-            $arde->total= $cantidad[$cont] * $precio_compra[$cont];
-            $arde->save();
-            $cont=$cont+1;
-        }
+       
       DB::commit();
 
       
@@ -207,34 +182,7 @@ class IngresoController extends Controller
         $detalle->save();
         $cont=$cont+1;
       }
-       $ing=DB::table('ingreso as i')
-            ->join('detalle_ingreso as di','i.idingreso','=','di.idingreso')
-            ->select(DB::raw('sum(di.cantidad*precio_compra) as total'))
-            ->where('i.idingreso', $ingreso->idingreso)
-            ->first();
-
-        $arqueo = Arqueo::where('estado', 'Abierto')->first();
-
-        $ar = Arqueo::find($arqueo->idarqueo);
-        $ar->total_dia = $arqueo->total_dia;
-        $ar->save();
-        $cont = 0;
-
-        while($cont < count($idproducto)){
-
-            $ar = Producto::find($idproducto[$cont]);
-
-            $arde = New ArqueoDetalle();
-            $arde->idarqueo = $arqueo->idarqueo;
-            $arde->monto= $precio_compra[$cont];
-            $arde->cantidad= $cantidad[$cont];
-            $arde->tipo_venta= 'Ingreso';
-            $arde->tipo_pago= 'Ingreso';
-            $arde->descripcion= 'Se Compro: ' . $ar->descripcion;
-            $arde->total= $cantidad[$cont] * $precio_compra[$cont];
-            $arde->save();
-            $cont=$cont+1;
-        }
+     
       DB::commit();
      
     }

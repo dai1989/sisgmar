@@ -101,4 +101,20 @@ class ArqueController extends Controller
         return Redirect::back();
 
     }
+     public function storeshow(Request $request)
+    {
+        $detalle = New ArqueoDetalle();
+        $detalle->idarqueo = $request->idarqueo ;
+        $detalle->cantidad = 1 ;
+        $detalle->monto = $request->monto ;
+        $detalle->total = $request->monto * 1 ;
+        $detalle->tipo_venta = $request->tipo_pago;
+        $detalle->tipo_pago = $request->tipo_pago;
+        $detalle->descripcion = $request->descripcion;
+        $detalle->save();
+
+        flash('Su detalle se agrego correctamente')->success()->important();
+
+        return Redirect::back();
+    }
 }

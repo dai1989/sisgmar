@@ -110,7 +110,7 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
+                                    <th></th> 
                                     <th>@if($venta->descripcionpago == "Nota de credito")
                                         <span class="text-derecha"><h4> {{number_format($venta->total_venta, 2, '.', '')}}</span>
                                             @else

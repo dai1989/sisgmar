@@ -364,4 +364,5 @@ Route::resource('pagos', 'PagoController');
     Route::get('/arqueo/tabla/{id}', 'ArqueController@tablashow')->name('arqueo.show.tabla');
     Route::put('/arqueo/update/{id}', 'ArqueController@update')->name('arqueo.update');
     Route::post('/arqueo/store', 'ArqueController@store')->name('arqueo.store');
-    
+     Route::post('/arqueo/detalle/store', 'ArqueController@storeshow')->name('arqueo.store.show');
+      Route::get('productos/listarPdf/{idproducto}', 'ProductoController@listarPdf')->name('productos_pdf');

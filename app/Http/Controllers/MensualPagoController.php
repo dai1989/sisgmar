@@ -28,7 +28,7 @@ class MensualPagoController extends Controller
         $arde->monto= $request->monto;
         $arde->cantidad= 1;
         $arde->tipo_venta= 'Corriente';
-        $arde->tipo_pago= 'Entrega';
+        $arde->tipo_pago= 'Efectivo';
         $arde->descripcion= 'Se Entrego Dinero';
         $arde->total= $request->monto;
         $arde->save();

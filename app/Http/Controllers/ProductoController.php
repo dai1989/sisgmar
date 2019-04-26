@@ -231,5 +231,19 @@ class ProductoController extends Controller
       return view("almacen.productos.stock", ["productos" => $productos]);
 
     }
+     public function listarPdf(Request $request,$id){
+          $productos = Producto::join('categorias','productos.categoria_id','=','categorias.id')
+        
+        ->select('productos.idproducto',
+        'productos.descripcion','productos.barcode','productos.stock','productos.imagen','productos.estado','categorias.categoria_descripcion')
+        ->orderBy('productos.idproducto', 'desc')->get();
+        $cont=Producto::count();
+       
+
+        $producto_name= sprintf('productos-%s.pdf', str_pad (strval($id),5, '0', STR_PAD_LEFT));
+
+        $pdf = PDF::loadView('pdf.articulospdf',['productos'=>$productos,'cont'=>$cont]);
+        return $pdf->download($producto_name);  
+      }
 
 }

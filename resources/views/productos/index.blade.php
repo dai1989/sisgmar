@@ -68,6 +68,7 @@
                 {!! Form::open(['route' => ['productos.destroy', $prod->idproducto], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                    <a href="{{ url('productos/pdf/' . $prod->idproducto) }}"class="btn btn-success download btn-xs"> <i class="fa fa-download"></i></a>
+                   <a href="{{ url('productos/listarPdf/' . $prod->idproducto) }}"class="btn btn-success download btn-xs"> <i class="fa fa-download"></i></a>
                     <a href="{!! route('productos.show', [$prod->idproducto]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     
                     <a href="{!! route('productos.edit', [$prod->idproducto]) !!}" class='btn btn-info btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
