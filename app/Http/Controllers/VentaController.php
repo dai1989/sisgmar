@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests\VentasFormRequest;
 use Flash;
 use App\Venta; 
-
+use App\ArqueoPago;
 use App\DetalleVenta;
 use App\Models\TipoPago;
 use App\Models\TipoFactura;
@@ -194,6 +194,16 @@ public function index(Request $request)
             $ar = Arqueo::find($arqueo->idarqueo);
             $ar->total_dia = $arqueo->total_dia + $request->get('total_venta');
             $ar->save();
+            $pago = New ArqueoPago();
+            $pago->idarqueo =  $arqueo->idarqueo;
+            $pago->idventa = $venta->idventa;
+            $pago->idingreso = 0;
+            $pago->tipo_pago = 'Venta';
+            $pago->pago_efectivo = $request->entrega;
+            $pago->pago_debito = $request->debito;
+            $pago->pago_credito = $request->pago_tarjeta;
+            $pago->monto =  $request->entrega + $request->debito + $request->pago_tarjeta;
+            $pago->save();
 
       while($cont < count($idproducto)){
         $detalle = new DetalleVenta();
@@ -259,6 +269,16 @@ public function index(Request $request)
             $ar = Arqueo::find($arqueo->idarqueo);
             $ar->total_dia = $arqueo->total_dia + $request->get('total_venta');
             $ar->save();
+             $pago = New ArqueoPago();
+            $pago->idarqueo =  $arqueo->idarqueo;
+            $pago->idventa = $venta->idventa;
+            $pago->idingreso = 0;
+            $pago->tipo_pago = 'Venta';
+            $pago->pago_efectivo = $request->entrega;
+            $pago->pago_debito = $request->debito;
+            $pago->pago_credito = $request->pago_tarjeta;
+            $pago->monto =  $request->entrega + $request->debito + $request->pago_tarjeta;
+            $pago->save();
       $cont = 0;
 
       while($cont < count($idproducto)){

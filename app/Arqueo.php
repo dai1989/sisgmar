@@ -22,4 +22,8 @@ class Arqueo extends Model
     {
         return $this->hasMany('App\ArqueoDetalle', 'idarqueo', 'idarqueo');
     }
+        public function pago()
+    {
+        return $this->hasMany('App\ArqueoPago', 'idarqueo', 'idarqueo');
+    }
 }

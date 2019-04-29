@@ -98,8 +98,8 @@ class MensualController extends Controller
     $tipopago_list = TipoPago::all();
     $personas=DB::table('personas')->where('tipo_persona','=','Cliente Cuenta Corriente')->get();
     $productos = DB::table('productos as prod')
-    ->join('detalle_ingreso as di', 'prod.idproducto', '=', 'di.idproducto' )
-    ->select(DB::raw('CONCAT(prod.barcode, " ",prod.descripcion) AS producto'),'prod.idproducto', 'prod.stock','prod.precio_venta',DB::raw('avg(di.precio_venta) as precio_promedio'))
+    
+    ->select(DB::raw('CONCAT(prod.barcode, " ",prod.descripcion) AS producto'),'prod.idproducto', 'prod.stock','prod.precio_venta')
     ->where('prod.estado','=','Activo')
     ->where('prod.stock','>','0')
     ->groupBy('producto','prod.idproducto','prod.stock','prod.precio_venta')

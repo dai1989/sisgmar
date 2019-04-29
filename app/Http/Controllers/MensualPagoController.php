@@ -6,6 +6,7 @@ use App\Mensual;
 use App\MensualPago;
 use App\Arqueo;
 use App\ArqueoDetalle;
+use App\ArqueoPago;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
@@ -38,6 +39,16 @@ class MensualPagoController extends Controller
         
         $pago->fecha_hora=$mytime->toDateTimeString();
         $pago->save();
+         $pagos = New ArqueoPago();
+        $pagos->idarqueo =  $arqueo->idarqueo;
+        $pagos->idventa = 0;
+        $pagos->idingreso = 0;
+        $pagos->tipo_pago = 'Entrega Cuenta';
+        $pagos->pago_efectivo = $request->monto;
+        $pagos->pago_debito = 0;
+        $pagos->pago_credito = 0;
+        $pagos->monto =  $request->monto;
+        $pagos->save();
 
         flash('El monto de entrega se ha agregado correctamente')->success()->important();
         return Redirect::back();
