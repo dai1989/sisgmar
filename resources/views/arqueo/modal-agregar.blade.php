@@ -17,7 +17,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <label for="">Tipo de Pago</label>
                         <select name="tipo_pago" class="form-control" >
-                            <option value="Ingreso">Egreso (Salio Dinero de la Caja)</option>
+                            <option value="Ingreso">Ingreso (Salio Dinero de la Caja)</option>
                             <option value="Efectivo">Efectivo (Entro Dinero a la Caja)</option>
                         </select>
                     </div>

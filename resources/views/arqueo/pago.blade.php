@@ -1,6 +1,6 @@
-@extends('adminlte::layouts.app')
+@extends('layouts.app')
 @section('css')
-    @include('layouts.datatables1_css')
+    <link rel="stylesheet" href="{{URL::to('/')}}/admin/css/jquery.dataTables.min.css">
     <style>
         table.dataTable tfoot th, table.dataTable tfoot td {
             padding: 0px 0px 0px 0px;
@@ -44,7 +44,7 @@
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h3>$ {{$arqueode->sum('pago_efectivo') - $ingreso->sum('pago_efectivo')}}</h3>
+                                  <h3>$ {{$arqueode->sum('monto') - $arqueode->sum('pago_credito') - $arqueode->sum('pago_debito') - $ingreso->sum('pago_efectivo')}}</h3>
                                 <p>Total en Caja</p>
                             </div>
                             <div class="icon">
@@ -97,8 +97,8 @@
         </div>
     </section>
 @endsection
-@section('scripts')
- @include('layouts.datatables1_js')
+@section('js')
+    <script src="{{URL::to('/')}}/admin/js/jquery.dataTables.min.js"></script>
     <script>
 
         $('#show').DataTable({

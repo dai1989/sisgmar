@@ -81,7 +81,7 @@ class ArqueController extends Controller
             flash('Debe cerrar el arqueo anterior')->error()->important();
             return Redirect::back();
         }
-        $mytime = Carbon::now('America/Argentina/Salta');
+        $mytime = Carbon::now('America/Argentina/Mendoza');
 
         $arqueo = New Arqueo();
         $arqueo->fecha_hora =  $mytime->toDateTimeString();
